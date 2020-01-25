@@ -1,9 +1,10 @@
 import React from "react";
-import { Player } from 'video-react';
+
 
 import Test from './test';
 import Search from '../search'
 import VideoList from './videoList';
+import Video from '../randomvideo/random-video'
 
 import "./u-clone.scss";
 
@@ -12,6 +13,8 @@ class Uclone extends React.Component {
     super();
     this.state = {
       videos: [],
+      randomvideo: [],
+      selectvideo: '',
       selectedVideo : ''
 
     }; 
@@ -25,7 +28,7 @@ class Uclone extends React.Component {
     const res = await videoFetch.json();
     console.log(res.items)
 
-    this.setState({video: res.items, selectedVideo: res.items[0]}, () => console.log(this.state.selectedVideo))
+    this.setState({videos: res.items, selectedVideo: res.items[0]}, () => console.log(this.state.selectedVideo))
   }
   onVideoSelect = (video) => {
     this.setState({selectedVideo: video})
@@ -33,36 +36,33 @@ class Uclone extends React.Component {
   
 
 
-  componentDidMount(){
-      console.log('Mouted')
-      
-     
-    }
+  async componentDidMount(){
+    const RandomVideo = await fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&key=AIzaSyBrqrHbO9fNf1CqEh8tzT9qpK_4QfLcKwg');
+    const res = await RandomVideo.json();
+  //  res.then( data  => console.log(data)).catch(error => console.log(error))
+   console.log(res.items)
+
+   this.setState({
+     randomvideo: res.items,
+     selectvideo: res.items[0]
+   }, () => console.log(this.state.selectvideo))
+}
+
+handleVideoSelect = (video) => {
+    this.setState({selectvideo: video}, console.log(this.state.selectvideo)) 
+     }
 
   render() {
-    const {video, selectedVideo} = this.state;
-    // console.log(selectedVideo)
+    const {videos, selectedVideo, randomvideo, selectvideo} = this.state;
+
+console.log(selectvideo)
     return (
     <div>
       <Search onFormSubmit={this.handleSubmit}/>
       <p>Uclone</p>
-      <Test video={selectedVideo}/>
-      <VideoList videos={video} videoSelect={this.onVideoSelect} />
-      {/* {
-        this.state.videos.map(video => 
-          <iframe title='v' src={`https://www.youtube.com/embed/${video.id}`} />
-            
-            // </video >
-          
-          // <Player  
-          //   playsinline
-          //   poster=''
-          //   src= {
-          //     `https://www.youtube.com/embed/${video.id}`
-          //   }
-          // /> 
-          )
-      } */}
+      <Test video={selectedVideo} videorand={selectvideo}/>
+      <VideoList videos={videos} videoSelect={this.onVideoSelect} />
+      <Video  randomvideo={randomvideo}  getVideo={this.handleVideoSelect}/>
     </div>
   )}
 }

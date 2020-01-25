@@ -28,7 +28,7 @@ import './search.scss';
         <form onSubmit={this.handleSubmit}>
          <input type='text'className='searchInput' placeholder='search...' 
          onChange={this.handleChange} />
-         <button>Search</button>
+         <button className='searchbtn'>Search</button>
         
         </form>
       </div>

@@ -1,0 +1,13 @@
+
+@media screen and (max-width: 420px){
+.frame{
+  max-width: 100%;
+  margin: 1.5rem auto;
+  // background: red;
+  display: flex;
+  .iFrame{
+    width: 96%;
+    margin: 0 auto;
+  }
+}
+}

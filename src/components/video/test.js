@@ -1,16 +1,22 @@
-import React from 'react'
-import { Player } from 'video-react';
+import React from 'react';
+
+import './test.scss'
 
 
- const Test = ({video}) => {
-   if(!video) return <div>Enter searchTerm</div>
-   console.log(video)
-   const videosrc = `https://www.youtube.com/embed/${video.id.videoId}`
-  console.log(video.id.videoId)
-  console.log(videosrc)
+ const Test = ({video, videorand}) => {
+   let videosrc ;
+   if(!video) {
+    videosrc = `https://www.youtube.com/embed/${videorand.id}` ;
+   } else{
+     videosrc = `https://www.youtube.com/embed/${video.id.videoId}` 
+   }
+  
+   console.log(videorand)
+  
   return (
-    <div>
-      <iframe frameBorder='0' height='100%' width='95%' title='bigFrame' src={videosrc} />
+    
+    <div className='frame'>
+      <iframe className='iFrame' frameBorder='0' height='100%'  title='bigFrame' src={videosrc} />
     </div>
   )
 }

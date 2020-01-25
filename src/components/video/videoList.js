@@ -2,15 +2,15 @@ import React from 'react'
 
 import VideoItem from './videoitem';
 
+import './videoList.scss';
 
-const VideoList = (props) => {
-  if(!props.videos) return <div>search video</div>
-  console.log(props.videos)
+const VideoList = ({videos, videoSelect}) => {
+  if(!videos) return <div>search video</div>
+  console.log(videos)
   return (
     
-    <div>
-      {props.videos.map(vid => <VideoItem onVideoSelect={props.videoSelect} video={vid} />)}
-    {/* //   { videos.map( (vid) =>console.log(vid) )} */}
+    <div className='video-list'>
+      {videos.map(vid => <VideoItem onVideoSelect={videoSelect} video={vid} />)}
      </div>
   )
 }

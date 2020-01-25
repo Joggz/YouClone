@@ -1,0 +1,18 @@
+@media screen and (max-width: 420px){
+  .video-item{
+    background: whitesmoke;
+    box-shadow: 3px 3px 4px 5px  rgba(black, 0.3);
+    max-width: 90%;
+    margin: 2rem auto;
+    border-radius: 5px;
+    display: flex;
+    
+    & > * {
+     padding-left: 15px;
+    }
+    .title{
+      margin-block-start: 0;
+      align-self: center;
+    }
+  }
+  }
