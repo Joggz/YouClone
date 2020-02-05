@@ -7,9 +7,11 @@ import './videoitem.scss';
   console.log(snippet)
   
   return (
+    <div className='grid'>
     <div className='video-item' onClick={() => onVideoSelect(video)}>
-      <img  alt='thumbnails' src={snippet.thumbnails.default.url}/>
+      <img  alt='thumbnails' src={snippet.thumbnails.medium.url}/>
       <p className='title'>{snippet.title} </p>
+    </div>
     </div>
   )
 }

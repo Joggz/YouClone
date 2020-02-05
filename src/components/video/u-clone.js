@@ -15,7 +15,8 @@ class Uclone extends React.Component {
       videos: [],
       randomvideo: [],
       selectvideo: '',
-      selectedVideo : ''
+      selectedVideo : '',
+      watchedVideo: []
 
     }; 
     
@@ -34,8 +35,6 @@ class Uclone extends React.Component {
     this.setState({selectedVideo: video})
   }
   
-
-
   async componentDidMount(){
     const RandomVideo = await fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&key=AIzaSyBrqrHbO9fNf1CqEh8tzT9qpK_4QfLcKwg');
     const res = await RandomVideo.json();
@@ -47,9 +46,15 @@ class Uclone extends React.Component {
      selectvideo: res.items[0]
    }, () => console.log(this.state.selectvideo))
 }
+// handlesave = (video) => {
+//   const watchedvideo = [];
+//   watchedvideo.push(video)
+//   console.log(watchedvideo);
 
+// }
 handleVideoSelect = (video) => {
-    this.setState({selectvideo: video}, console.log(this.state.selectvideo)) 
+    this.setState({selectvideo: video}) 
+    // this.handlesave(video)
      }
 
   render() {
@@ -62,7 +67,8 @@ console.log(selectvideo)
       <p>Uclone</p>
       <Test video={selectedVideo} videorand={selectvideo}/>
       <VideoList videos={videos} videoSelect={this.onVideoSelect} />
-      <Video  randomvideo={randomvideo}  getVideo={this.handleVideoSelect}/>
+      {/* work ongetting the video in an array on click */}
+      <Video  randomvideo={randomvideo} save={this.handlesave} getVideo={this.handleVideoSelect}/>
     </div>
   )}
 }

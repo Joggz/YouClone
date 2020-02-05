@@ -9,7 +9,7 @@ const VideoList = ({videos, videoSelect}) => {
   console.log(videos)
   return (
     
-    <div className='video-list'>
+    <div className='video-list grid'>
       {videos.map(vid => <VideoItem onVideoSelect={videoSelect} video={vid} />)}
      </div>
   )

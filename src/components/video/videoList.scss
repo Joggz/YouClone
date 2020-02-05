@@ -1,4 +1,8 @@
-
+.grid{
+  display: grid;
+  cursor: pointer;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
 @media screen and (max-width: 420px){
 .video-list{
   // background: greenyellow;
